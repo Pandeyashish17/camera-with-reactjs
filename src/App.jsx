@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
-export default function Home() {
+import React, { useEffect, useRef } from "react";
+
+const App = () => {
   const videoRef = useRef(null);
   const photoRef = useRef();
 
@@ -25,20 +26,33 @@ export default function Home() {
     let context = photo.getContext("2d");
     context.drawImage(video, 0, 0, width, height);
   };
-  return (
-    <>
-      <div className="app">
-        <div className="">
-          <video className="camera" ref={videoRef}></video>
-        </div>
 
-        <button onClick={() => takePhoto()}  style={{
-          margin:"10px",padding:"5px"
-        }}>Take photo</button>
-        {photoRef && (
-          <canvas className="image" ref={photoRef}></canvas>
-        )}
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "50vw",
+        height: "50vh",
+      }}
+    >
+      <div className="">
+        <video className="camera" ref={videoRef}></video>
       </div>
-    </>
+
+      <button
+        onClick={() => takePhoto()}
+        style={{
+          margin: "10px",
+          padding: "5px",
+        }}
+      >
+        Take photo
+      </button>
+      {photoRef && <canvas className="image" ref={photoRef}></canvas>}
+    </div>
   );
-}
+};
+
+export default App;
